@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="学习资源导航">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>一些还不错的工具</title>
+    <style>
+       
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #1a1a1a;
+    overflow-x: hidden;
+}
+
+/* 动态背景 */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(125deg, #00000088 0%, #00000088 100%),
+        url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z" fill="%23ffffff10" fill-rule="evenodd"/%3E%3C/svg%3E');
+    z-index: -1;
+    animation: backgroundMove 30s linear infinite;
+}
+
+@keyframes backgroundMove {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100px 100px;
+    }
+}
+
+/* 导航栏样式 */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 1.2rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    transition: all 0.3s;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    padding: 0.5rem 0;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #2196F3;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px rgba(33, 150, 243, 0.3);
+}
+
+nav a:hover {
+    color: #2196F3;
+    text-shadow: 0 0 10px rgba(33, 150, 243, 0.3);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* 章节样式 */
+.section {
+    display: flex;
+    padding: 7rem 8% 5rem;
+    min-height: 100vh;
+    align-items: center;
+    gap: 3rem;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    perspective: 1000px;
+}
+
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.02) 100%);
+    pointer-events: none;
+}
+
+/* 图片容器样式 */
+.image-container {
+    flex: 1.2;
+    padding: 1.5rem;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.image-placeholder {
+    background: rgba(255, 255, 255, 0.05);
+    width: 100%;
+    height: 0;
+    padding-top: 75%;
+    position: relative;
+    border-radius: 15px;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
+
+.image-placeholder::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 100%
+    );
+    transform: rotate(45deg);
+    animation: lightSweep 3s linear infinite;
+}
+
+@keyframes lightSweep {
+    0% {
+        transform: rotate(45deg) translateY(-100%);
+    }
+    100% {
+        transform: rotate(45deg) translateY(100%);
+    }
+}
+
+.image-placeholder video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 15px;
+}
+
+.image-placeholder:hover {
+    transform: translateY(-5px) rotateX(5deg) rotateY(5deg);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* 内容样式 */
+.content {
+    flex: 1.8;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.content:hover {
+    transform: translateZ(20px);
+}
+
+h2 {
+    font-size: 2.4rem;
+    margin-bottom: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    position: relative;
+    padding-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: #2196F3;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(33, 150, 243, 0.3);
+}
+
+p {
+    margin-bottom: 1.4rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #e0e0e0;
+}
+
+strong {
+    color: #2196F3;
+    font-weight: 600;
+    padding: 0.1rem 0.3rem;
+    background: rgba(33, 150, 243, 0.15);
+    border-radius: 4px;
+    text-shadow: none;
+}
+
+/* 按钮样式 */
+.button-group {
+    display: flex;
+    gap: 1.2rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.next-section,
+.visit-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: all 0.3s;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.next-section {
+    background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+}
+
+.visit-button {
+    background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
+}
+
+.next-section::before,
+.visit-button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 100%
+    );
+    transform: rotate(45deg);
+    transition: all 0.3s;
+}
+
+.next-section:hover::before,
+.visit-button:hover::before {
+    animation: buttonSweep 1s forwards;
+}
+
+@keyframes buttonSweep {
+    0% {
+        transform: rotate(45deg) translateY(-100%);
+    }
+    100% {
+        transform: rotate(45deg) translateY(100%);
+    }
+}
+
+.next-section:hover,
+.visit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* 进度指示器 */
+.progress-container {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.progress-dot {
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.progress-dot::before {
+    content: attr(data-label);
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.progress-dot:hover::before {
+    opacity: 1;
+    right: 30px;
+}
+
+.progress-dot.active {
+    background: #2196F3;
+    box-shadow: 0 0 10px rgba(33, 150, 243, 0.5);
+    transform: scale(1.2);
+}
+
+.progress-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-50%);
+    z-index: -1;
+}
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 1.2rem 2rem; /* 增加左右padding */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex; /* 添加flex布局 */
+    justify-content: space-between; /* 两端对齐 */
+    align-items: center; /* 垂直居中 */
+}
+
+.logo {
+    font-family: "Microsoft YaHei", sans-serif;
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    margin-left: auto; /* 让导航链接靠右 */
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .section {
+        flex-direction: column;
+        padding: 5rem 5%;
+        gap: 2rem;
+    }
+
+    .image-container,
+    .content {
+        width: 100%;
+        padding: 1.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .button-group {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        gap: 1rem;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .section {
+        padding: 4rem 3%;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .progress-container {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(33, 150, 243, 0.5);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(33, 150, 243, 0.7);
+}
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-line"></div>
+        <div class="progress-dot" data-label="LMSYS" data-section="lmsys"></div>
+        <div class="progress-dot" data-label="DOAJ" data-section="doaj"></div>
+        <div class="progress-dot" data-label="Kaggle" data-section="kaggle"></div>
+        <div class="progress-dot" data-label="开发资源" data-section="dev"></div>
+        <div class="progress-dot" data-label="自学平台" data-section="study"></div>
+        <div class="progress-dot" data-label="实用工具" data-section="tools"></div>
+    </div>
+    <nav>
+        <div class="logo">YIN.</div>
+        <ul>
+            <li><a href="#lmsys">LMSYS</a></li>
+            <li><a href="#doaj">DOAJ</a></li>
+            <li><a href="#kaggle">Kaggle</a></li>
+            <li><a href="#dev">开发资源</a></li>
+            <li><a href="#study">自学平台</a></li>
+            <li><a href="#tools">实用工具</a></li>
+        </ul>
+    </nav>
+
+    <section id="lmsys" class="section">
+        <div class="image-container">
+            <div class="image-placeholder">
+                <video width="100%" height="100%" controls>
+                    <source src="./lmsys.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        <div class="content">
+            <h2>LMSYS Chatbot Arena</h2>
+            <p>由<strong>加州大学伯克利分校</strong>团队推出的<strong>AI模型评测平台</strong>。用户可匿名对比多个随机大模型（如GPT-4/Claude/Llama）的回答质量并投票，系统根据投票生成实时排名。</p>
+            <p>当然，对我们来说排名不重要，<strong>不花钱不翻墙使用几乎全部的主流LLM</strong>才是重点。</p>
+            <p><strong>Gemini</strong>：优秀的<strong>AIGC创作功能</strong>还有<strong>文档分析功能</strong>，长文本处理能力和推理能力优秀。可以用来解答一些比较难的问题。</p>
+            <p><strong>ChatGPT</strong>：总体来说，使用感受是比较好的。<strong>优秀的通用大语言模型</strong>。不知道选哪个用GPT一般不会错。</p>
+            <p><strong>Claude</strong>：<strong>长文档深度分析和编程能力很强</strong>。</p>
+            <p>Gork用的比较少，其他的也没怎么用过。</p>
+            <p>不过总而言之，还是一个非常强大的网站！</p>
+            <div class="button-group">
+                <a href="#doaj" class="next-section">下一节 →</a>
+                <a href="https://lmsys.org/" class="visit-button" target="_blank">访问LMSYS</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="doaj" class="section">
+        <div class="image-container">
+            <div class="image-placeholder">
+                <video width="100%" height="100%" controls>
+                    <source src="DOAJ.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        <div class="content">
+            <h2>DOAJ（开放获取期刊目录）</h2>
+            <p><strong>全球最大的免费学术期刊索引库</strong>，收录经审核的合规开源期刊。提供期刊的论文检索，<strong>无需付费或机构权限即可下载全文</strong>。</p>
+            <p>论文收录比较全面，从<strong>自然科学到人文科学</strong>都有。</p>
+            <p>上了大学肯定要写论文啊，而且老师也几乎一定会要求对其他论文的引用。知网什么的肯定又要花钱，所以<strong>DOAJ上大量的免费论文是不错的选择</strong>。</p>
+            <div class="button-group">
+                <a href="#kaggle" class="next-section">下一节 →</a>
+                <a href="https://doaj.org/search/articles?ref=homepage-box&source=%7B%22query%22%3A%7B%22query_string%22%3A%7B%22query%22%3A%22CNN%22%2C%22default_operator%22%3A%22AND%22%7D%7D%2C%22track_total_hits%22%3Atrue%7D" class="visit-button" target="_blank">访问DOAJ</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="kaggle" class="section">
+        <div class="image-container">
+            <div class="image-placeholder">
+                <video width="100%" height="100%" controls>
+                    <source src="kaggle.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        <div class="content">
+            <h2>Kaggle</h2>
+            <p><strong>Google旗下数据科学竞赛社区</strong>。当然给你推荐这个网站，肯定不是让你和洋哥们搞竞赛去。他提供了<strong>几乎覆盖了各个领域的数据集</strong>。当我们写论文做项目的时候，肯定要有数据作为支撑。如果有效数据不好找，AI又在一直瞎编的话，可以到这个网站找找，有没有自己想要的数据。</p>
+            <div class="button-group">
+                <a href="#dev" class="next-section">下一节 →</a>
+                <a href="https://www.kaggle.com/datasets" class="visit-button" target="_blank">访问kaggle</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="dev" class="section">
+        <div class="image-container">
+            <div class="image-placeholder">
+                <video width="100%" height="100%" controls>
+                    <source src="CSDN&github.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        <div class="content">
+            <h2>开发资源</h2>
+            <p><strong>CSDN</strong>：国内老牌IT技术社区以<strong>编程问题解答和资源下载</strong>为主。聚集大量中文开发者经验帖，提供了几乎所有常见的计算机使用过程中的问题的可行解决方案。当然有很多技术贴和项目分享，不过这个可能计算机专业的人才会用的比较多吧。</p>
+            <p><strong>GitHub</strong>：微软旗下<strong>全球最大的开源代码托管平台</strong>，开发者协作基础设施。这个网站如果不使用加速器或者VPN的话，会有点不稳定。不过，其实大多数情况是能正常访问的。它的作用呢，就是里面会有特别特别多的开源项目。理工科基本上都会学一些基础的计算机嘛。我们可以直接去github和csdn上抄作业。</p>
+            <div class="button-group">
+                <a href="#study" class="next-section">下一节 →</a>
+                <a href="https://www.csdn.net/" class="visit-button" target="_blank">访问CSDN</a>
+                <a href="https://github.com/" class="visit-button" target="_blank">访问GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="study" class="section">
+        <div class="image-container">
+            <div class="image-placeholder">
+                <video width="100%" height="100%" controls>
+                    <source src="MOOC&bilibili.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        <div class="content">
+            <h2>自学平台</h2>
+            <p>这里推荐两个吧，一个是<strong>中国大学MOOC（慕课）</strong>。是<strong>教育部主导的国内高校公开课平台</strong>。还有一个就是<strong>B站</strong>。（我是b大的）</p>
+            <p>我们这里有句话就是"听课耽误学习"。免不了有时候老师讲的课会水一点，或者自己溜号了几节课，然后就再也听不懂了。</p>
+            <p>如果想<strong>长期系统的自学一门课程</strong>，慕课和B站上都有很多非常优质的课程。但是如果是<strong>期末速成</strong>的话，B站上的资源还是比较好的。</p>
+            <div class="button-group">
+                <a href="#tools" class="next-section">下一节 →</a>
+                <a href="https://www.icourse163.org/" class="visit-button" target="_blank">访问MOOC</a>
+                <a href="https://www.bilibili.com/" class="visit-button" target="_blank">访问B站</a>
+            </div>
+        </div>
+    </section>
+    <section id="tools" class="section">
+        <div class="image-container">
+            <div class="image-placeholder">
+                <video width="100%" height="100%" controls>
+                    <source src="tools.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        <div class="content">
+            <h2>实用工具</h2>
+            <p><strong>Photopea</strong>：基于浏览器的<strong>在线PS替代工具</strong>由独立开发者维护。<strong>100%兼容PSD/AI文件格式</strong>，支持图层编辑、滤镜导出，无需安装且免费。众所周知，photoshop是收费的。如果不想买正版或者找盗版，使用网页版的photoshop是非常不错的选择。那么你可能就要问了，又不是学艺术的，学那个干什么？我只能点到为止的说，"润色"实验数据。</p>
+            <p><strong>WolframAlpha</strong>：由Mathematica团队开发的<strong>计算知识引擎</strong>，非传统搜索引擎。其实不管学不学理工科，都躲不过数学这一刀。支持<strong>自然语言输入和数学输入</strong>两种搜索方式，对各个计算类问题也有专题。（类似于专家系统，ES）而且有相对来讲详细易理解的步骤，尤其做的不错的，是可视化部分。</p>
+            <p><strong>傲梅分区助手（AOMEI）</strong>：国产磁盘管理工具，专注解决Windows存储痛点。（你买的好像是联想的Y7000吧，就不推荐适用mac系统的了。）可以<strong>无损调整分区大小</strong>（如C盘扩容）、系统迁移到SSD、修复启动故障，免费版功能齐全。如果有一天真的C盘爆红，可以用傲梅进行文件迁移，或在不刷机的前提下进行系统分盘。</p>
+            <div class="button-group">
+                <a href="https://www.photopea.com/" class="visit-button" target="_blank">访问Photopea</a>
+                <a href="https://www.wolframalpha.com/" class="visit-button" target="_blank">访问WolframAlpha</a>
+                <a href="https://www.disktool.cn/" class="visit-button" target="_blank">访问傲梅</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 滚动动画
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = 0;
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+        // 进度指示器功能
+const dots = document.querySelectorAll('.progress-dot');
+const sections = document.querySelectorAll('.section');
+
+// 点击进度点跳转到对应部分
+dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+        const section = document.querySelector(`#${dot.dataset.section}`);
+        section.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+
+// 滚动时更新活动状态
+window.addEventListener('scroll', () => {
+    let current = '';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= sectionTop - sectionHeight / 3) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    dots.forEach(dot => {
+        dot.classList.remove('active');
+        if (dot.dataset.section === current) {
+            dot.classList.add('active');
+        }
+    });
+});
+
+// 初始化第一个点为激活状态
+dots[0].classList.add('active');
+    </script>
+</body>
+</html>
