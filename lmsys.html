@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="学习资源导航">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>LMSYS</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #1a1a1a;
+    overflow-x: hidden;
+}
+
+/* 动态背景 */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(125deg, #00000088 0%, #00000088 100%),
+        url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z" fill="%23ffffff10" fill-rule="evenodd"/%3E%3C/svg%3E');
+    z-index: -1;
+    animation: backgroundMove 30s linear infinite;
+}
+
+@keyframes backgroundMove {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100px 100px;
+    }
+}
+/* 导航栏样式 */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 1.2rem 2rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.logo {
+    font-family: "Microsoft YaHei", sans-serif;
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.quote-container {
+    font-family: "Microsoft YaHei", sans-serif;
+    color: #ffffff;
+}
+
+.quote-en {
+    font-size: 1rem;
+    margin-right: 1rem;
+}
+
+.quote-cn {
+    font-size: 0.9rem;
+}
+
+.quote-author {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-left: 0.5rem;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-text {
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.home-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: all 0.3s;
+    font-weight: 500;
+    background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.home-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+}
+
+/* 轮播图容器 */
+.slider-container {
+    margin-top: 80px;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+}
+
+.slider {
+    width: 90%;
+    max-width: 1400px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    gap: 2rem;
+    position: relative;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.slider-left {
+    flex: 1;
+    position: relative;
+}
+
+.slide-image {
+    width: 100%;
+    padding-top: 45%; /* 16:9 的比例 (9/16 = 0.5625) */
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+
+.slide-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.slide-image img.active {
+    opacity: 1;
+}
+
+.slider-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.slide-text {
+    color: #ffffff;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    padding: 2rem;
+}
+
+.slide-text.active {
+    opacity: 1;
+}
+/* 轮播图控制按钮 */
+.slider-controls {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    pointer-events: none;
+}
+
+.slider-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    backdrop-filter: blur(10px);
+}
+
+.slider-button:hover {
+    background: rgba(33, 150, 243, 0.5);
+    transform: scale(1.1);
+}
+
+/* 导航点样式 */
+.slider-dots {
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.slider-dot {
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.slider-dot.active {
+    background: #2196F3;
+    box-shadow: 0 0 10px rgba(33, 150, 243, 0.5);
+    transform: scale(1.2);
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .slider {
+        flex-direction: column;
+    }
+    
+    .slider-left,
+    .slider-right {
+        width: 100%;
+    }
+    
+    .quote-container {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-text {
+        display: none;
+    }
+    
+    .slider {
+        padding: 1rem;
+    }
+    
+    .slide-text {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+}
+</style>
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <div class="logo">YIN.</div>
+            <div class="quote-container">
+                <span class="quote-en">The future is already here — it's just not evenly distributed.</span><br>
+                <span class="quote-cn">未来已来，只是尚未均匀分布。</span><br>
+                <span class="quote-author">—— William Gibson    威廉·吉布森</span>
+            </div>
+        </div>
+        <div class="nav-right">
+            <span class="nav-text">lmsys</span>
+            <a href="./index.html" class="home-button">返回首页</a>
+        </div>
+    </nav>
+
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slider-left">
+                <div class="slide-image">
+                    <img src="./lmsys1.png" class="active" alt="Slide 1">
+                    <img src="./lmsys2.png" alt="Slide 2">
+                    <img src="./lmsys3.png" alt="Slide 3">
+                    <img src="./lmsys4.png" alt="Slide 4">
+                    <img src="./lmsys5.png" alt="Slide 5">
+                </div>
+                                <div class="slider-controls">
+                    <div class="slider-button prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="slider-button next">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="slider-dots">
+                    <div class="slider-dot active"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                </div>
+            </div>
+            <div class="slider-right">
+                <div class="slide-text active">
+                    进入lmsys.org后，在左侧或右侧选择Chatbot Arena（聊天机器人竞技场）模块进入。可能会有一些卡顿，请稍等片刻。初次使用时可能会有一些权限及条款的申请，接受后方可继续使用。
+                </div>
+                <div class="slide-text">
+                    在网页顶部选择选择使用模式（battle、side by side、direct talk）。这里个人推荐direct talk模式，比较符合我们平时使用LLM时的习惯。
+                </div>
+                <div class="slide-text">
+                    以选择direct talk模式为例，在右侧选择想要使用的模型。
+                </div>
+                <div class="slide-text">
+                    在对话框里可以选择交互模式。这里只有两种交互模式，一是文本交流，二是图片生成（这个我没用过）。
+                </div>
+                <div class="slide-text">
+                    在每次使用一段时间后，可能会遇到无法正常使用的情况。此时，点击浏览器左上角进行刷新，随后进行真人验证，便可继续正常使用。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide-image img');
+        const texts = document.querySelectorAll('.slide-text');
+        const dots = document.querySelectorAll('.slider-dot');
+        const prevButton = document.querySelector('.slider-button.prev');
+        const nextButton = document.querySelector('.slider-button.next');
+
+        let currentSlide = 0;
+        let slideInterval;
+
+        // 初始化轮播间隔
+        function startSlideShow() {
+            slideInterval = setInterval(nextSlide, 10000);
+        }
+
+        // 切换到指定幻灯片
+        function goToSlide(index) {
+            // 移除当前活动状态
+            slides[currentSlide].classList.remove('active');
+            texts[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+
+            // 更新当前幻灯片索引
+            currentSlide = index;
+            if (currentSlide >= slides.length) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+
+            // 添加新的活动状态
+            slides[currentSlide].classList.add('active');
+            texts[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        // 下一张幻灯片
+        function nextSlide() {
+            goToSlide(currentSlide + 1);
+        }
+
+        // 上一张幻灯片
+        function prevSlide() {
+            goToSlide(currentSlide - 1);
+        }
+
+        // 重置定时器
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startSlideShow();
+        }
+
+        // 添加事件监听器
+        prevButton.addEventListener('click', () => {
+            prevSlide();
+            resetInterval();
+        });
+
+        nextButton.addEventListener('click', () => {
+            nextSlide();
+            resetInterval();
+        });
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+                resetInterval();
+            });
+        });
+
+        // 启动轮播
+        startSlideShow();
+    </script>
+</body>
+</html>
